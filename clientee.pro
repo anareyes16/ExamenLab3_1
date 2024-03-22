@@ -14,7 +14,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     principal.cpp \
-    users.cpp \
+    usuario.cpp
+
     usuario.cpp
 
 HEADERS += \
@@ -22,13 +23,15 @@ HEADERS += \
     ClientManager.h \
     mainwindow.h \
     principal.h \
-    users.h \
+    usuario.h
+
     usuario.h
 
 FORMS += \
     ChatItemWidget.ui \
     mainwindow.ui \
-    principal.ui \
+    principal.ui
+
     principal.ui
 
 # Default rules for deployment.

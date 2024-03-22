@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>349</width>
-    <height>77</height>
+    <width>426</width>
+    <height>150</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,16 +15,23 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="lblMessage">
+    <widget class="QLabel" name="lblTime">
      <property name="text">
-      <string>mensaje</string>
+      <string>text</string>
      </property>
     </widget>
    </item>
-   <item alignment="Qt::AlignRight">
-    <widget class="QLabel" name="lblTime">
+   <item>
+    <widget class="QLabel" name="label">
      <property name="text">
-      <string>tiempo</string>
+      <string>text</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lbname">
+     <property name="text">
+      <string>text</string>
      </property>
     </widget>
    </item>

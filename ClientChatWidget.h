@@ -1,8 +1,9 @@
 #ifndef CLIENTCHATWIDGET_H
 #define CLIENTCHATWIDGET_H
-
-#include <QWidget>
+#include <QDir>
 #include <QTcpSocket>
+#include <QWidget>
+
 namespace Ui {
 class ClientChatWidget;
 }
@@ -23,6 +24,7 @@ private slots:
 private:
     Ui::ClientChatWidget *ui;
     QTcpSocket *_client;
+      QDir dir;
 };
 
 #endif // CLIENTCHATWIDGET_H

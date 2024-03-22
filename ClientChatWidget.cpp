@@ -9,6 +9,9 @@ ClientChatWidget::ClientChatWidget(QTcpSocket *client,QWidget *parent) :
     ui->setupUi(this);
     connect(_client, &QTcpSocket::readyRead, this, &ClientChatWidget::dataReceived);
  connect(_client, &QTcpSocket::disconnected, this, &ClientChatWidget::clientDisconnected);
+
+// dir.mkdir(_client->name());
+// dir.setPath("./" + _client->name());
 }
 
 ClientChatWidget::~ClientChatWidget()

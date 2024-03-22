@@ -1,11 +1,12 @@
 #include "ChatItemWidget.h"
 #include "ui_ChatItemWidget.h"
 
-ChatItemWidget::ChatItemWidget(QWidget *parent) :
+ChatItemWidget::ChatItemWidget(QWidget *parent, QString nombre) :
     QWidget(parent),
     ui(new Ui::ChatItemWidget)
 {
     ui->setupUi(this);
+    this->nombre = nombre;
 }
 
 ChatItemWidget::~ChatItemWidget()
@@ -15,11 +16,13 @@ ChatItemWidget::~ChatItemWidget()
 
 void ChatItemWidget::setMessage(QString message, bool isMyMessage)
 {
-    if(isMyMessage)
-    {
-        ui->lblMessage->setAlignment(Qt::AlignRight);
+    if(isMyMessage){
+        ui->label->setAlignment(Qt::AlignRight);
+        ui->lbname->setAlignment(Qt::AlignRight);
+        ui->lblTime->setAlignment(Qt::AlignRight);
+    }else{
     }
-
-   ui->lblMessage->setText(message);
-   ui->lblTime->setText(QDateTime::currentDateTime().toString("HH:mm"));
+    ui->lbname->setText(nombre);
+    ui->label->setText(message);
+    ui->lblTime->setText(QTime::currentTime().toString("HH:mm"));
 }
