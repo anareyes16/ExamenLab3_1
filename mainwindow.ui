@@ -6,47 +6,49 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>558</width>
-    <height>552</height>
+    <width>672</width>
+    <height>427</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>servidorFuncionable</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupChat">
       <property name="title">
-       <string>MENSAJES</string>
+       <string>Chats</string>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QListWidget" name="listMessages"/>
+        <widget class="QTabWidget" name="tbChats">
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>mensaje</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lnMessage"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btnEnviar">
-        <property name="text">
-         <string>eniviar</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QGroupBox" name="groupClient">
+      <property name="title">
+       <string>CLIENTS</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QListWidget" name="listClients"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_DisconnetAll">
+         <property name="text">
+          <string>DESCONECTARSE</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -55,30 +57,12 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>558</width>
+     <width>672</width>
      <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuopciones">
-    <property name="title">
-     <string>opciones</string>
-    </property>
-    <addaction name="actionconectar"/>
-    <addaction name="actionsalida"/>
-   </widget>
-   <addaction name="menuopciones"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionconectar">
-   <property name="text">
-    <string>conectar</string>
-   </property>
-  </action>
-  <action name="actionsalida">
-   <property name="text">
-    <string>salida</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>

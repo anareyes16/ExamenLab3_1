@@ -1,14 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "ChatItemWidget.h"
-
+#include "ClientChatWidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->centralwidget->setEnabled(false);
+  setupServer();
 }
 
 MainWindow::~MainWindow()
@@ -16,49 +15,27 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_actionconectar_triggered()
+void MainWindow::newClientConnected(QTcpSocket *client)
 {
-    _client = new ClientManager();
-    connect(_client, &ClientManager::connected,[this]()
-    {
-        ui->centralwidget->setEnabled(true);
-    });
-    connect(_client, &ClientManager::disconnected,[this](){
-        ui->centralwidget->setEnabled(false);
-    });
-    connect(_client, &ClientManager::dataReceived, this, &MainWindow::dataReceived) ;
+auto id = client->property("id").toInt();
+ui->listClients->addItem(QString("Añadido amigo: %1").arg(id));
+auto chatWidget = new ClientChatWidget(client);
+ui->tbChats->addTab(chatWidget, QString("Client%1").arg(id));
 
 
-    _client->connecToServer();
 }
 
-void MainWindow::dataReceived(QByteArray data)
+void MainWindow::clientDisconnected(QTcpSocket *client)
 {
-    //ui->listMessages->addItem(data);
-    auto chatWidget = new ChatItemWidget(this);
-    chatWidget->setMessage(data);
-    auto listItemWidget = new QListWidgetItem();
-listItemWidget->setSizeHint(QSize(0,65));
-ui->listMessages->addItem(listItemWidget);
-listItemWidget->setBackground(QColor(167, 255, 237));
-ui->listMessages->setItemWidget(listItemWidget, chatWidget);
+    auto id = client->property("id").toInt();
+    ui->listClients->addItem(QString("desconectado: %1").arg(id));
+
 }
 
-
-void MainWindow::on_btnEnviar_clicked()
+void MainWindow::setupServer()
 {
-    auto message = ui->lnMessage->text().trimmed();
-    _client->sendMessage(message);
-    ui->listMessages->addItem(message);
-    ui->lnMessage->setText("");
-   // ui->listMessages->addItem(message);
-    auto chatWidget = new ChatItemWidget(this);
-    chatWidget->setMessage(message, true); //true porque es "mi mensaje"
-    auto listItemWidget = new QListWidgetItem();
-listItemWidget->setSizeHint(QSize(0,65));
-ui->listMessages->addItem(listItemWidget);
-
-ui->listMessages->setItemWidget(listItemWidget, chatWidget);
+    _server = new ServerManager();
+    connect(_server,&ServerManager::newClientConnected, this,&MainWindow::newClientConnected);
+    connect(_server,&ServerManager::clientDisconnected, this,&MainWindow::clientDisconnected);
 }
 

@@ -1,9 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QByteArray>
 #include <QMainWindow>
-#include "ClientManager.h"
+#include "ServerManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,15 +15,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
 private slots:
-    void on_actionconectar_triggered();
-    void dataReceived(QByteArray data );
-
-    void on_btnEnviar_clicked();
-
+    void newClientConnected(QTcpSocket *client);
+    void clientDisconnected(QTcpSocket *client);
 private:
     Ui::MainWindow *ui;
-   ClientManager *_client;
+    ServerManager *_server;
+
+private:
+    void setupServer();
+
 };
 #endif // MAINWINDOW_H
